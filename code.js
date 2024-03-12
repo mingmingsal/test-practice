@@ -26,14 +26,17 @@ function caesarCypher(string, shift) {
     let newString = "";
     
     for(let i =0;i<string.length;i++){
-        string = string.toUpperCase();
-        let wrapLettersCode = (string.charCodeAt(i)+shift-65)%26 + 65;
-        if(string.charAt(i).toUpperCase() !== string.charAt(i).toLowerCase()){
-            newString += String.fromCharCode(wrapLettersCode).toUpperCase();
+        let code = string.charCodeAt(i);
+        if((code>=65 && code<=90)||(code>=97 && code<=122)){
+            code+=shift;
+            if(shift>90 || shift > 122){
+                code-=26;
+            }
+            newString += String.fromCharCode(code);
         }
         else newString += string.charAt(i);
-        
     }
+    return newString;
    
 }
 function analyzeArray(arr) {
